@@ -5,7 +5,7 @@ var keystone = require('keystone'),
 	Match = keystone.list('Match'),
 	async = require('async'),
 	Media = keystone.list('Media'),
-	mediaTypes = require('../../lib/MediaType'),
+	mediaTypes = require('../../../lib/MediaType'),
  	PostComment = keystone.list('PostComment');
 
 exports = module.exports = function(req, res) {

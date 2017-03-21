@@ -3,7 +3,7 @@ var keystone = require('keystone'),
 	Player = keystone.list('Player'),
 	Tournament = keystone.list('Tournament'),
 	_ = require('underscore'),
-	mailLib = require('../../../lib/mail'),
+	mailLib = require('../../../../lib/mail'),
 	async = require('async');
 
 exports = module.exports = function(req, res) {

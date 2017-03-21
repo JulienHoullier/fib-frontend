@@ -1,6 +1,6 @@
 var keystone = require('keystone');
 var async = require('async');
-var classement = require('../../lib/classement');
+var classement = require('../../../lib/classement');
 
 exports = module.exports = function(req, res) {
     var locals = res.locals;
