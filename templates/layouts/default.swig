@@ -102,7 +102,7 @@
 		<div class="occ-header-footer-bg">
 			<div class="container">
 				<h4>Partenaires</h4>
-				{% if sponsors && sponsors.length > 0%}
+				{% if sponsors and sponsors.length > 0 %}
 				<div id="occ-sponsor-bar">
 					<ul>
 					{% for sponsor in sponsors %}
