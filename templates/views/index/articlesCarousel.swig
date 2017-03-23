@@ -24,7 +24,7 @@
 					{% if loop.first %}
 						{% set activeClass = 'active' %}
 					{% endif %}
-			<article class="occ-article item {{ activeClass }}">
+			<article class="occ-article item {{ activeClass }}" data-ks-editable="{type:'list', path:'/keystone/posts', id:'{{ article.id }}'}">
 
 				<div class="row">
 					<div class="occ-article-date visible-md-block visible-lg-block">
