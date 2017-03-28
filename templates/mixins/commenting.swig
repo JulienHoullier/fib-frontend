@@ -27,22 +27,21 @@
 		</div>
 	</form>
 {%- endmacro -%}
-{%- macro commentPost(comment) -%}
-	{%- if  comment.author -%}
+{% macro commentPost(comment) %}
+	{% if comment.author %}
 		<div id="comment-id-{{comment.id}}" style="margin-top: 20px;">
 			<div class="media">
 				<div class="pull-left">
 					{% set photo_url = 'http://placehold.it/80x80' %}
-					{%- if  comment.author.photo.exists -%}
+					{% if comment.author.photo.exists %}
 						{% set photo_url = comment.author._.photo.thumbnail(80,80) %}
-					{%- endif -%}
+					{% endif %}
 					<img src="{{ photo_url }}" alt="{{comment.author.name.full}}" width="80" height="80" class="img-rounded"/>
 				</div>
 				<div class="media-body">
 					<p>
 						<strong>{{comment.author.name.full}}</strong>
-						{%- if user && user.id === comment.author.id -%}
-							|  &middot; 
+						{% if user and user.id == comment.author.id %}
 							<a href="?remove=comment&comment={{comment.id}}" title='Delete this comment' rel='tooltip' data-placement='left' class="comment-delete js-delete-confirm">Supprimer</a>
 						{% endif %}
 					</p>
@@ -50,8 +49,8 @@
 				</div>
 			</div>
 		</div>
-	{%- endif -%}
-{%- endmacro -%}
+	{% endif %}
+{% endmacro %}
 {%- macro commentThread(comments) -%}
 	{%- if comments.length -%}
 		{%- for comment in comments -%}

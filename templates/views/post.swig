@@ -21,7 +21,7 @@
 </script>
   <div class="container">
 				<p class="occ-fg">
-					<a href="/blog" class="occ-theme-color">&larr; Retour aux actualités</a>
+					<a href="/blog" class="btn btn-sm btn-primary">&larr; Retour aux actualités</a>
 				</p>
 				<hr>
 				<article class="occ-post occ-bg">
@@ -59,8 +59,8 @@
 								</span>
 							</div>
 						</header>
-						<div class="occ-post-content row">
-							{{ post.content.full | raw }}
+						<div class="occ-post-content">
+							{{ post.content.full | safe }}
 						</div>
 						<div id="comments">
 							{{ Commenting.commentForm() }}

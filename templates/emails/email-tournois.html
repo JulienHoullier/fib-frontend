@@ -12,7 +12,7 @@
 
 	<ul>
 		{% for tournoi in tournois %}
-		<li> Le {{tournoi._.date.format("DD-MM-YYYY")}} à {{ tournoi.name }}
+		<li> Le {{tournoi.date | date("DD-MM-YYYY")}} à {{ tournoi.name }}
 		{% endfor %}
 	</ul>
 

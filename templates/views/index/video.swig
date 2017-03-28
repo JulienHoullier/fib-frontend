@@ -9,7 +9,7 @@
 			<iframe class="embed-responsive-item" width="300" height="200" src="{{ media.url | raw }}" frameborder="0" allowfullscreen></iframe>
 		{% endif %}
 		{% if media.embedded %}
-			{{ media.embedded | raw }}
+			{{ media.embedded | safe }}
 		{% endif %}
 	</div>
 	{% endif %}

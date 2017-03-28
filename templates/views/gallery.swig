@@ -11,13 +11,15 @@
 				<div class="row">
 					{% for gallery in galleries %}
 						{% if gallery.images.length %}
-							{% set default = gallery.images[0] %}
+							{% set defaultImg = gallery.images[0] %}
 							{% if gallery.heroImage.exists %}
-								{% set default = gallery.heroImage %}
+								{% set defaultImg = gallery.heroImage %}
 							{% endif %}
-							<a href="/gallery/{{gallery.key}}" class="col-md-4 ">
+							<a href="/gallery/{{ gallery.key }}" class="col-md-4 ">
 								{{ gallery.name }}
-								<img src="{{ default.limit(300,300) }}" class="occ-hero-img" />
+								{% if defaultImg %}
+								<img src="{{ defaultImg._.limit(300,300) }}" class="occ-hero-img" />
+								{% endif %}
 							</a>
 						{% endif %}			
 					{% endfor %}
