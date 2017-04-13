@@ -29,9 +29,13 @@
 		</table>
 
 		{% if user and user.isTournamentManager %}
+		<div class="row">
 			<form method="POST">
-				<button type="submit" class="btn btn-primary">Envoyer un mail des prochains tournois</button>
+				<div class="form-group col-md-4">							
+					<button type="submit" class="btn btn-primary form-control">Envoyer un mail des prochains tournois</button>
+				</div>
 			</form>
+		</div>
 		{% endif %}
 
 		{{ PanelTitle.renderTitle("Liste des inscrits du club") }}
