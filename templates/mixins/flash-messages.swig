@@ -19,7 +19,7 @@
 
 {%- macro renderMessage(message, type) -%}
 	<div class="alert alert-{{ type }}">
-		{%- if utils.isObject(message) -%}
+		{%- if message.title or message.detail or message.list -%}
 			{%- if message.title -%}
 				<h4>{{ message.title }}</h4>
 			{%- endif -%}
