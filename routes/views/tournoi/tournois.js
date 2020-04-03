@@ -3,10 +3,10 @@ var keystone = require('keystone'),
 	Player = keystone.list('Player'),
 	Tournament = keystone.list('Tournament'),
 	_ = require('underscore'),
-	mailLib = require('../../../lib/mail'),
+	mailLib = require('../../../../lib/mail'),
 	async = require('async');
 
-exports = module.exports = function(req, res) {
+exports = module.exports = function (req, res) {
 
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
@@ -21,26 +21,26 @@ exports = module.exports = function(req, res) {
 	locals.section = 'tournois';
 
 	// Envoi du mail des tournois aux joueurs
-	view.on('post', function(next) {
-		Player.model.find().exec(function(err, players){
-			mailLib.sendMail('email-tournois', null, '[OCC Bad - Licenciés] prochains tournoi', players, {tournois: locals.tournois});
+	view.on('post', function (next) {
+		Player.model.find().exec(function (err, players) {
+			mailLib.sendMail('email-tournois', null, '[OCC Bad - Licenciés] prochains tournoi', players, { tournois: locals.tournois });
 		});
 		req.flash('success', "Email envoyé !");
 		next();
 	});
 
 	// Chargement des prochaines inscriptions
-	view.on('render', function(next){
+	view.on('render', function (next) {
 		Registration.model.find()
-		.populate('tournament player1 player2')
-		.exec(function(err, registrations){
+			.populate('tournament player1 player2')
+			.exec(function (err, registrations) {
 
-				if(err) {
-					console.log('Erreur pendant le chargement des inscriptions : '+err);
+				if (err) {
+					console.log('Erreur pendant le chargement des inscriptions : ' + err);
 					return next(err);
 				}
 
-				if(registrations) {
+				if (registrations) {
 					var tournois = {};
 					async.each(registrations, function (registration, next) {
 						if (registration.tournament && registration.tournament.date > today) {
@@ -73,7 +73,7 @@ exports = module.exports = function(req, res) {
 							// Ajout du joueur ou de l'équipe au tournoi.
 							tournois[registration.tournament.name]['categories'][registration.category]['divisions'][registration.ranking].push({
 								name: [registration.player1.name.full],
-								status : registration.status
+								status: registration.status
 							});
 
 							// Incrémentation du nombre d'inscrit au tournoi et à la catégorie.
@@ -90,9 +90,9 @@ exports = module.exports = function(req, res) {
 					}, function (err) {
 						//should not happens since we do not use err in function to populate tournois array
 						if (err) {
-							console.log('Erreur pendant le chargement des inscriptions : '+err);
+							console.log('Erreur pendant le chargement des inscriptions : ' + err);
 						}
-						else{
+						else {
 							// Tri par dates des tournois
 							var sortedTournois = _.sortBy(_.pairs(tournois), function (tournoi) {
 								return tournoi[1].date;
@@ -102,21 +102,21 @@ exports = module.exports = function(req, res) {
 						next();
 					});
 				}
-				else{
+				else {
 					next();
 				}
-		});
+			});
 	});
 
 	// Sélection des prochains tournois
-	view.on('init', function(next){
+	view.on('init', function (next) {
 		Tournament.model.find()
-		.where('date').gte(today)
-		.sort('date')
-		.exec(function(err, tournaments){
-			locals.tournois = tournaments;
-			next(err);
-		});
+			.where('date').gte(today)
+			.sort('date')
+			.exec(function (err, tournaments) {
+				locals.tournois = tournaments;
+				next(err);
+			});
 	});
 
 

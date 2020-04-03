@@ -1,0 +1,12 @@
+{% import "../mixins/panel_title.njk" as PanelTitle %}
+{% extends "../layouts/default.njk" %}
+
+{% block content %}
+	<div class="container">
+
+		{{ PanelTitle.renderTitle(page.title) }}
+
+		{{ page.content | safe }}
+
+	</div>
+{% endblock %}

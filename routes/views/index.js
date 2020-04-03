@@ -5,10 +5,10 @@ var keystone = require('keystone'),
 	Match = keystone.list('Match'),
 	async = require('async'),
 	Media = keystone.list('Media'),
-	mediaTypes = require('../../lib/MediaType'),
- 	PostComment = keystone.list('PostComment');
+	mediaTypes = require('../../../lib/MediaType'),
+	PostComment = keystone.list('PostComment');
 
-exports = module.exports = function(req, res) {
+exports = module.exports = function (req, res) {
 
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
@@ -58,7 +58,7 @@ exports = module.exports = function(req, res) {
 		.limit(10));
 
 	// Sélection du Media
-	view.query('media', Media.model.findOne({type : mediaTypes.Home.value}));
+	view.query('media', Media.model.findOne({ type: mediaTypes.Home.value }));
 
 	// Sélection des 3 derniers commentaires
 	view.query('lastComments', PostComment.model.find()
@@ -67,42 +67,43 @@ exports = module.exports = function(req, res) {
 		.sort('-publishedOn')
 		.limit(3));
 
-	var countNbInscrit = function (tournament, next){
+	var countNbInscrit = function (tournament, next) {
 		var nbInscrit = 0;
-		if(tournament.registrations){
-			async.each(tournament.registrations, function (registration, next){
+		if (tournament.registrations) {
+			async.each(tournament.registrations, function (registration, next) {
 				nbInscrit += (registration.player2 != null) ? 2 : 1;
 				next();
 			},
-			function (err){
-				tournament.nbInscrit = nbInscrit;
-				next(err);
-			});
+				function (err) {
+					tournament.nbInscrit = nbInscrit;
+					next(err);
+				});
 		}
 	};
 
-	var addNbComments = function (article, next){
+	var addNbComments = function (article, next) {
 		article.nbComment = 0;
 		PostComment.model.count()
 			.where('post', article)
 			.where('commentState', 'published')
-			.where('author').ne(null).exec(function(err, count){
-				if(!err && count){
+			.where('author').ne(null).exec(function (err, count) {
+				if (!err && count) {
 					article.nbComment = count;
 				}
 				next();
 			});
 	};
 
-	view.on('render', function(next){
+	view.on('render', function (next) {
 		async.parallel([
-			function(callback){async.each(locals.tournaments, countNbInscrit, function(err){callback(err)});},
-			function(callback){async.each(locals.articles, addNbComments, function(err){callback(err)});}
-		], function(err){
-			if(err) {
+			function (callback) { async.each(locals.tournaments, countNbInscrit, function (err) { callback(err) }); },
+			function (callback) { async.each(locals.articles, addNbComments, function (err) { callback(err) }); }
+		], function (err) {
+			if (err) {
 				return console.log(err);
 			}
-			next();});
+			next();
+		});
 	});
 
 	// Render the view

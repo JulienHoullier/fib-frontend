@@ -1,4 +1,4 @@
-{% extends "../layouts/default.swig" %}
+{% extends "../layouts/default.njk" %}
 
 {% block content %}
 	<div class="container">
@@ -25,21 +25,21 @@
 						</div>
 					{% endif %}
 
-					{% include "./index/articlesCarousel.swig" %}
+					{% include "./index/articlesCarousel.njk" %}
 
 					<div class="row">
 
 						<div class="col-md-6">
-							{% include "./index/resultats.swig" %}
+							{% include "./index/resultats.njk" %}
 						</div>
 
 						<div class="col-md-6">
-							{% include "./index/tournois.swig" %}
+							{% include "./index/tournois.njk" %}
 						</div>
 
 					</div>
 
-					{% include "./index/evenements.swig" %}
+					{% include "./index/evenements.njk" %}
 
 			</div>
 
@@ -64,11 +64,11 @@
 					</div>
 				</div>
 
-				{% include "./index/commentaires.swig" %}
+				{% include "./index/commentaires.njk" %}
 
-				{% include "./index/twitter.swig" %}
+				{% include "./index/twitter.njk" %}
 
-				{% include "./index/video.swig" %}
+				{% include "./index/video.njk" %}
 
 			</div>
 
