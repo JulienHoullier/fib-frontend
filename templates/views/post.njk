@@ -1,5 +1,5 @@
-{% extends "../layouts/default.swig" %}
-{% import "../mixins/commenting.swig" as Commenting%}
+{% extends "../layouts/default.njk" %}
+{% import "../mixins/commenting.njk" as Commenting%}
 
 {%- block head %}
   <meta property="og:url"           content="http://www.occ-badminton.org/blog/post/{{post.slug}}" />
@@ -59,7 +59,11 @@
 								</span>
 							</div>
 						</header>
+<<<<<<< HEAD:templates/views/post.swig
 						<div class="occ-post-content">
+=======
+						<div class="occ-post-content row">
+>>>>>>> renaming_nunjucks:templates/views/post.njk
 							{{ post.content.full | safe }}
 						</div>
 						<div id="comments">

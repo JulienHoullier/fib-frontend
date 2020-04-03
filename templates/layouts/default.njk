@@ -1,4 +1,4 @@
-{% import "../mixins/flash-messages.swig" as FlashMessages %}
+{% import "../mixins/flash-messages.njk" as FlashMessages %}
 
 <!doctype html>
 <html xml:lang="fr-fr" lang="fr-fr" xmlns:og="http://ogp.me/ns#">
@@ -72,7 +72,7 @@
 							{%- endfor %}
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
-							{% if user -%}
+							{%- if user -%}
 								{%- if user.canAccessKeystone -%}
 									<li><a class="btn" href="/keystone">Administration</a></li>
 								{%- endif -%}
@@ -102,7 +102,11 @@
 		<div class="occ-header-footer-bg">
 			<div class="container">
 				<h4>Partenaires</h4>
+<<<<<<< HEAD:templates/layouts/default.swig
 				{% if sponsors and sponsors.length > 0 %}
+=======
+				{%- if sponsors and sponsors.length > 0 -%}
+>>>>>>> renaming_nunjucks:templates/layouts/default.njk
 				<div id="occ-sponsor-bar">
 					<ul>
 					{% for sponsor in sponsors %}
@@ -111,9 +115,9 @@
 					</ul>
 				</div>
 
-				{% else %}
+				{%- else -%}
 				<p>The sponsors are empty</p>
-				{% endif %}
+				{%- endif -%}
 			</div>
 		</div>
 
