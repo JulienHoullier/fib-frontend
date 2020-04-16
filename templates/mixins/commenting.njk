@@ -41,12 +41,7 @@
 				<div class="media-body">
 					<p>
 						<strong>{{comment.author.name.full}}</strong>
-<<<<<<< HEAD:templates/mixins/commenting.swig
-						{% if user and user.id == comment.author.id %}
-=======
-						{%- if user and user.id === comment.author.id -%}
-							|  &middot; 
->>>>>>> renaming_nunjucks:templates/mixins/commenting.njk
+						{% if user and user.id === comment.author.id %}
 							<a href="?remove=comment&comment={{comment.id}}" title='Delete this comment' rel='tooltip' data-placement='left' class="comment-delete js-delete-confirm">Supprimer</a>
 						{% endif %}
 					</p>

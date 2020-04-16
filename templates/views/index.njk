@@ -134,7 +134,7 @@
 																	<div class="col-md-5">
 																		<H4>
 																			{% if lastResult.home == 'Yes' %}
-																				OCC-BADMINTON
+																				{{ brand }}
 																			{% else %}
 																				{{lastResult.versus|upper}}
 																			{% endif %}
@@ -154,7 +154,7 @@
 																			{% if lastResult.home == 'Yes' %}
 																				{{lastResult.versus|upper}}
 																			{% else %}
-																				OCC-BADMINTON
+																				{{ brand }}
 																			{% endif %}
 																		</H4>
 																	</div>
@@ -209,7 +209,7 @@
 																	<tr class="{{resultClass}}">
 																		<td class="col-md-5">
 																			{% if match.home == 'Yes' %}
-																				OCC-BADMINTON
+																				{{ brand }}
 																			{% else %}
 																				{{match.versus|upper}}
 																			{% endif %}
